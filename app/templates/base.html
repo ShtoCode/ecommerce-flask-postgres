@@ -5,21 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='main.css') }}"
       rel="stylesheet"
     />
+
   </head>
   <body>
-    <nav class="">
-      <div className="flex order-1">
-        <a to="/" className="flex items-center">
+    <nav class="navbar">
+      <div class="icono">
+        <a to="/" >
           <span
-            class=""
             >Tienda de muebles</span
           >
         </a>
       </div>
-      <ul>
+      <form class="buscador" action="" method='get'>
+        <input type="text" name="search" placeholder="¿Quieres buscar algo?">
+      </form>
+      <ul class="burger">
         <li><a href="">Inicio</a></li>
         <li class="dropdown">
           <a href="#">Productos</a>
@@ -29,9 +32,13 @@
           </div>
           {% endfor %}
         </li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Carrito</a></li>
       </ul>
     </nav>
+    <section class="content">
+      {% block content %}
+      {% endblock %}
+    </section>
   </body>
 </html>

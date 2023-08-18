@@ -1,0 +1,60 @@
+
+body {
+    margin: 0;
+}
+.navbar {
+    background-color: green;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1vh;
+    margin: 0;
+}
+
+.navbar .icono{
+    margin-top: 1vh;
+}
+
+.navbar .icono a span {
+    font-size: 3vh;
+}
+
+.navbar .buscador {
+    margin-left: 29vw;
+    margin-top: 1vh;
+}
+
+.navbar .buscador input{
+    padding: 1.6vh 6vw;
+    border-radius: 4vw;
+    border: none;
+    margin-bottom: 1vh;
+}
+
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    margin-left: 12vw;
+}
+
+.navbar ul li a{
+    font-size: 1.8vh;
+    padding: 1vh 1vw;
+}
+
+.navbar ul li a:hover{
+    background-color: rgb(154, 161, 167);
+}
+
+
+
+
+
