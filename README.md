@@ -49,11 +49,11 @@ Este es un proyecto de una aplicación de comercio electrónico desarrollada en 
 6. Para iniciar la aplicación, ejecute el siguiente comando:
   ```
     flask run
-     ```
+  ```
    
 ## Modo Debug de Flask
 
 7. Para evitar tener que detener y reiniciar el servidor cada vez que realice cambios en el código, configure el modo de depuración de Flask. En Git Bash, ejecute el siguiente comando:
    ```
     export FLASK_DEBUG=1
-     ```
+   ```
