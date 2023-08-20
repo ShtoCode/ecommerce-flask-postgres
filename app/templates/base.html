@@ -8,6 +8,10 @@
       href="{{ url_for('static', filename='main.css') }}"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/all.min.css') }}">
+    <script src="{{ url_for('static', filename='font-awesome/all.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    
 
   </head>
   <body>
@@ -15,26 +19,35 @@
       <div class="icono">
         <a to="/" >
           <span
-            >Tienda de muebles</span
+            >StoreApp</span
           >
         </a>
       </div>
       <form class="buscador" action="" method='get'>
         <input type="text" name="search" placeholder="¿Quieres buscar algo?">
+        <button class="btn-search">
+          <span><i class="fa-solid fa-magnifying-glass"></i></span>
+          <span class="text-btn-search">Buscar</span>
+        </button>
       </form>
       <ul class="burger">
         <li><a href="">Inicio</a></li>
         <li class="dropdown">
-          <a href="#">Productos</a>
-          {% for categoria in categorias %}
+          <a href="#">Productos <i class="fa-solid fa-caret-down"></i></a>           
           <div class="dropdown-content">
+          {% for categoria in categorias %}
             <a href="#">{{ categoria['categoria'] }}</a>
-          </div>
           {% endfor %}
+          </div>
         </li>
         <li><a href="#">Contacto</a></li>
         <li><a href="#">Carrito</a></li>
       </ul>
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     </nav>
     <section class="content">
       {% block content %}
