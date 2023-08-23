@@ -1,6 +1,8 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const navbarUl = document.querySelector(".navbar ul");
+ document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
 
-menuToggle.addEventListener("click", () => {
-  navbarUl.classList.toggle("menu-hidden");
-});
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('show-menu');
+    });
+  });

@@ -39,11 +39,12 @@ Este es un proyecto de una aplicación de comercio electrónico desarrollada en 
 4. Instale PostgreSQL y configure su base de datos.
 
 5. En el archivo .env, proporcione la información necesaria para la conexión a la base de datos. Debe configurar las siguientes variables de entorno:
+  ```
   DB_HOST=nombre_de_host
   DB_USER=nombre_de_usuario
   DB_PASSWORD=contraseña
   DB_NAME=nombre_de_base_de_datos
-
+  ```
 ## Ejecución de aplicación
 
 6. Para iniciar la aplicación, ejecute el siguiente comando:

@@ -19,7 +19,11 @@ def create_app():
     db.init_app(app)
 
     from . import store
+    from . import contact
+    from . import products
 
     app.register_blueprint(store.bp)
+    app.register_blueprint(contact.bp)
+    app.register_blueprint(products.bp)
 
     return app

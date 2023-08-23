@@ -1,25 +1,27 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <title>{% block title %}{% endblock %} - StoreApp</title>
+    <title>{% block title %}{% endblock %} - Mi Bello Hogar</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="{{ url_for('static', filename='main.css') }}"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/all.min.css') }}">
+    {% block css %} {% endblock %}
     <script src="{{ url_for('static', filename='font-awesome/all.min.js') }}"></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
-    
-
   </head>
   <body>
+    <div class="wrapper">
     <nav class="navbar">
       <div class="icono">
         <a to="/" >
           <span
-            >StoreApp</span
+            >Mi Bello Hogar</span
           >
         </a>
       </div>
@@ -30,17 +32,17 @@
           <span class="text-btn-search">Buscar</span>
         </button>
       </form>
-      <ul class="burger">
-        <li><a href="">Inicio</a></li>
+      <ul class="burger" id="menu">
+        <li><a href="{{ url_for('store.index') }}">Inicio</a></li>
         <li class="dropdown">
-          <a href="#">Productos <i class="fa-solid fa-caret-down"></i></a>           
+          <a href="{{ url_for('products.index') }}">Productos <i class="fa-solid fa-caret-down"></i></a>           
           <div class="dropdown-content">
           {% for categoria in categorias %}
             <a href="#">{{ categoria['categoria'] }}</a>
           {% endfor %}
           </div>
         </li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="{{ url_for('contact.index') }}">Contacto</a></li>
         <li><a href="#">Carrito</a></li>
       </ul>
     <div class="menu-toggle">
@@ -53,5 +55,26 @@
       {% block content %}
       {% endblock %}
     </section>
+    </div>
+    <footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <ul>
+                <li><a href="{{ url_for('store.index') }}">Inicio</a></li>
+                <li><a href="#">Acerca de nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        © 2023 Mi Bello Hogar. Todos los derechos reservados.
+    </div>
+</footer>
   </body>
+
 </html>
