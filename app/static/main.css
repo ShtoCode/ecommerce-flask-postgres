@@ -1,13 +1,14 @@
 body {
   margin: 0;
-    background-color: #e1f1f2;
-    min-height: 100vh;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+  background-color: #e1f1f2;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Raleway", sans-serif;
 }
 
-.wrapper{
+.wrapper {
   flex: 1;
 }
 
@@ -25,7 +26,7 @@ body {
 }
 
 .navbar .buscador {
-  margin-left: 32vw;
+  margin-left: 28vw;
   margin-top: 1vh;
 }
 
@@ -46,7 +47,7 @@ body {
   flex-direction: row;
   align-items: center;
   list-style: none;
-  margin-left: 10vw;
+  margin-left: 6vw;
 }
 
 .navbar ul li a {
@@ -129,44 +130,43 @@ body {
 .menu-hidden {
   display: none;
 }
-  .show-menu {
-    display: block !important;
-  }
+.show-menu {
+  display: block !important;
+}
 
-  .content {
-    margin-bottom: 25vh;
+.content {
+  margin-bottom: 25vh;
+}
 
-  }
-
-  footer {
-    background-color: #004943;
-    color: #fff;
-    padding: 20px;
+footer {
+  background-color: #004943;
+  color: #fff;
+  padding: 20px;
 }
 
 .footer-links ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-links li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .footer-links a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .footer-social a {
-    color: #fff;
-    font-size: 24px;
-    margin-right: 10px;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
 }
 
 .footer-copyright {
-    text-align: center;
-    padding-top: 10px;
+  text-align: center;
+  padding-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -220,10 +220,10 @@ body {
   }
   .navbar ul.show-menu {
     display: block;
-    position: absolute; 
-    top: 6%; 
+    position: absolute;
+    top: 6%;
     left: 56%;
-    background-color: #004943; 
+    background-color: #004943;
   }
 
   .navbar ul li a {
@@ -231,19 +231,30 @@ body {
     padding: 1vh 1vw;
   }
 
-  
   .navbar ul.show-menu li {
-    padding: 10px; 
+    padding: 10px;
   }
 }
 
-  .burger {
-    display: none;
-  }
+.burger {
+  display: none;
+}
 
-  .show-menu {
-    display: block !important;
-  }
+.show-menu {
+  display: block !important;
+}
+
+
+.flash{
+  background-color: red;
+  width: 30vw;
+  padding: 30px 30px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 35vw;
+}
+
+
 
 @media (max-width: 1644px) {
   .navbar .burger {
@@ -293,8 +304,8 @@ body {
     width: 25px;
     display: block;
     margin: 5px auto;
-  } 
-   .show-menu {
+  }
+  .show-menu {
     display: block !important;
   }
 }

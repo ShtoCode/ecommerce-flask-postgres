@@ -4,4 +4,4 @@ bp = Blueprint('contact', __name__, url_prefix='/contacto')
 
 @bp.route("/", methods=["GET", "POST"])
 def index():
-    return render_template('contact/index.html')
+    return render_template('contact/contact.html')
