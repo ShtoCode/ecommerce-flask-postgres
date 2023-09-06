@@ -14,16 +14,15 @@ def create_app():
         DATABASE=os.environ.get('DATABASE')
     )
 
-    from . import db
-
-    db.init_app(app)
-
+    
     from . import store
     from . import contact
     from . import products
+    from . import auth
 
     app.register_blueprint(store.bp)
     app.register_blueprint(contact.bp)
     app.register_blueprint(products.bp)
+    app.register_blueprint(auth.bp)
 
     return app

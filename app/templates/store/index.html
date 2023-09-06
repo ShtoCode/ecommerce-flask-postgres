@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Inicio{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='static/') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 {% endblock %}
 {% block content %}
 <div class="hero">
   <img src="{{ url_for('static', filename='img/hero-desktop.jpg') }}" width="100%" alt="">
+</div>
+<div class="categories">
+  <h2>Nuestro catalogo de ventas <span class="material-symbols-outlined">
+shopping_bag
+</span></h2>
 </div>
 
 {% endblock %}

@@ -8,10 +8,10 @@ bp = Blueprint('store', __name__, url_prefix='/')
 
 @bp.route('/', methods=['GET'])
 def index():
-    db, c = get_db()
-
+    db = get_db()
+    c = db.cursor()
     c.execute("SELECT * FROM categoria")
-
     categorias = c.fetchall()
+    db.close()
 
     return render_template('store/index.html', categorias=categorias)
