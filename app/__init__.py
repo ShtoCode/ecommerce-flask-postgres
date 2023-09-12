@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, g
 
 
 def create_app():
@@ -11,7 +11,10 @@ def create_app():
         DATABASE_HOST=os.environ.get('DATABASE_HOST'),
         DATABASE_PASSWORD=os.environ.get('DATABASE_PASSWORD'),
         DATABASE_USER=os.environ.get('DATABASE_USER'),
-        DATABASE=os.environ.get('DATABASE')
+        DATABASE=os.environ.get('DATABASE'),
+        RESEND_API_KEY=os.environ.get('RESEND_API_KEY'),
+        OWNER_MAIL=os.environ.get('OWNER_MAIL')
+
     )
 
     
@@ -19,6 +22,18 @@ def create_app():
     from . import contact
     from . import products
     from . import auth
+
+    from .db import get_db
+
+
+    @app.before_request
+    def before_request():
+        db = get_db()
+        c = db.cursor()
+        c.execute("SELECT * FROM categoria")
+        g.categorias = c.fetchall()
+        db.close()
+
 
     app.register_blueprint(store.bp)
     app.register_blueprint(contact.bp)

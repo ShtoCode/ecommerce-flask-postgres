@@ -2,6 +2,13 @@
 {% block title %}Productos{% endblock %}
 {% block content %}
 <div>
-    PRODUCTOS
+    {% if productos %}
+    {% for producto in productos %}
+
+    <h2>PRODUCTO: {{  producto[1] }}</h3>
+    {% endfor %}
+    {% else %}
+    <h2>Página de productos</h3>
+    {% endif %}
 </div>
 {% endblock %}
