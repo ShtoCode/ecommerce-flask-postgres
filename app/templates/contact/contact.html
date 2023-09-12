@@ -8,9 +8,9 @@
   <span class="title">Dejanos un comentario. <span class="material-symbols-outlined">
 stylus_note
 </span></span>
-  <form class="form">
+  <form class="form" method="POST">
     <div class="group">
-    <input placeholder="‎" type="text" required="">
+    <input placeholder="‎" type="text" id="name" name="name" required="">
     <label for="name">Nombre</label>
     </div>
 <div class="group">
@@ -21,7 +21,11 @@ stylus_note
     <textarea placeholder="‎" id="comment" name="comment" rows="5" required=""></textarea>
     <label for="comment">Mensaje</label>
 </div>
-    <button type="submit">Enviar</button>
+    <button id="btn-submit" type="submit">Enviar</button>
   </form>
 </div>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src='{{ url_for('static', filename='js/contact.js') }}'></script>
 {% endblock %}

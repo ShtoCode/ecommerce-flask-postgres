@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/all.min.css') }}">
     {% block css %} {% endblock %}
     <script src="{{ url_for('static', filename='font-awesome/all.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -41,8 +41,8 @@
         <li class="dropdown">
           <a href="{{ url_for('products.index') }}">Productos <i class="fa-solid fa-caret-down"></i></a>           
           <div class="dropdown-content">
-          {% for categoria in categorias %}
-            <a href="#">{{ categoria['categoria'] }}</a>
+          {% for categoria in g.categorias %}
+            <a href={{ url_for('products.category', category = categoria[1]) }}>{{ categoria[1] }}</a>
           {% endfor %}
           </div>
         </li>
@@ -58,16 +58,18 @@
         <span></span>
         <span></span>
         <span></span>
-    </div>
+
+      </div>
     </nav>
     <section class="content">
       {% for message in get_flashed_messages() %}
-      <div class="flash" id="flash-message">{{ message }}</div>
+      <div class="flash" id="flash-message"><p>{{ message }}</p></div>
       {% endfor %} 
       {% block content %}
       {% endblock %}
-    </section>
+
     </div>
+    </section>
     <footer>
     <div class="footer-content">
         <div class="footer-links">
@@ -87,6 +89,8 @@
         © 2023 Mi Bello Hogar. Todos los derechos reservados.
     </div>
 </footer>
+
+    {% block js %} {% endblock %}
   </body>
 
 </html>
