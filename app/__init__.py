@@ -1,10 +1,19 @@
 import os
+import base64
+import requests
 
 from flask import Flask, g
+from flask_caching import Cache
 
+cache = Cache(config={"CACHE_TYPE":"SimpleCache", "CACHE_DEFAULT_TIMEOUT":48*60*60})
 
 def create_app():
+
+
     app = Flask(__name__)
+
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    cache.init_app(app)
 
     app.config.from_mapping(
         SECRET_KEY=os.environ.get('SECRET_KEY'),
@@ -17,7 +26,7 @@ def create_app():
 
     )
 
-    
+
     from . import store
     from . import contact
     from . import products
@@ -25,14 +34,22 @@ def create_app():
 
     from .db import get_db
 
+    def b64encode_filter(data):
+        return base64.b64encode(data).decode('utf-8')
+
+    # Agrega el filtro personalizado a Jinja2
+    app.jinja_env.filters['b64encode'] = b64encode_filter
+
 
     @app.before_request
     def before_request():
-        db = get_db()
-        c = db.cursor()
-        c.execute("SELECT * FROM categoria")
-        g.categorias = c.fetchall()
-        db.close()
+        try:
+            response = requests.get("http://127.0.0.1:8000/categorys")
+            if response.status_code == 200:
+                data = response.json()
+                g.categorias = data
+        except:
+            return {"error": "Error al obtener datos de FastAPI"}, 500
 
 
     app.register_blueprint(store.bp)

@@ -17,7 +17,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 1vh;
   margin: 0;
 }
 
@@ -47,7 +46,7 @@ body {
   flex-direction: row;
   align-items: center;
   list-style: none;
-  margin-left: 6vw;
+  margin-left: 3rem;
 }
 
 .navbar ul li a {

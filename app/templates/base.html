@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
-      href="{{ url_for('static', filename='main.css') }}"
+      href="{{ url_for('static', filename='css/main.css') }}"
       rel="stylesheet"
     />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -13,11 +13,13 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/all.min.css') }}">
     {% block css %} {% endblock %}
     <script src="{{ url_for('static', filename='font-awesome/all.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+
   </head>
   <body>
     <div class="wrapper">
@@ -41,18 +43,19 @@
         <li class="dropdown">
           <a href="{{ url_for('products.index') }}">Productos <i class="fa-solid fa-caret-down"></i></a>           
           <div class="dropdown-content">
-          {% for categoria in g.categorias %}
-            <a href={{ url_for('products.category', category = categoria[1]) }}>{{ categoria[1] }}</a>
+          {% for categoria in g.categorias['categorys'] %}
+            <a href="{{ url_for('products.category', category=categoria['categoria']) }}">{{ categoria['categoria'] }}</a>
           {% endfor %}
           </div>
         </li>
         <li><a href="{{ url_for('contact.index') }}">Contacto</a></li>
-        {% if g.client %}
+        {% if g.authenticated == true %}
         <li><a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a></li>
         {% else %}
         <li><a href="{{ url_for('auth.register') }}">Registrarse</a></li>
         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
         {% endif %}
+        <li><a href="{{ url_for('store.cart') }}"><i class="fa-solid fa-cart-shopping"></i><span id="contador-carrito" class="contador">0</span></a></li>
       </ul>
     <div class="menu-toggle">
         <span></span>
