@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/details.css') }}">
+{% endblock css %}
+{% block content %}
+{% if mueble %}
+<div class="product">
+    <div class="title-product">
+        <h2>{{ mueble.nombre_producto }}</h2>
+    </div>
+
+    <div class="product-images">
+        <div class="carousel-container">
+            {% for imagen in imagenes %}
+            <div class="carousel-slide">
+                <img src="data:image/jpeg;base64,{{ imagen.imagen_data|b64encode }}" alt="Imagen del producto">
+            </div>
+            {% endfor %}
+        </div>
+        <button id="prevBtn" class="carousel-btn">Anterior</button>
+        <button id="nextBtn" class="carousel-btn">Siguiente</button>
+    </div>
+
+    <div class="product-description">
+        <h3>Descripción:</h3>
+        <p>{{ mueble.descripcion }}</p>
+    </div>
+
+    <div class="product-price">
+        <h3>Precio:</h3>
+        <p>$ {{ mueble.precio|format }}</p>
+    </div>
+
+    <div class="product-actions">
+        <button class="btn1">Comprar</button>
+        <button class="btn2">Añadir al carrito</button>
+    </div>
+</div>
+
+{% else %}
+    <div class="title-product">
+        <h2>Producto no encontrado :(</h2>
+    </div>
+
+{% endif %}
+{% endblock content %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/detail.js') }}"></script> 
+{% endblock js %}
+

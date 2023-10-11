@@ -1,14 +1,72 @@
 {% extends 'base.html' %}
-{% block title %}Productos{% endblock %}
+{% block title %}Productos de {% if category %}{{ category | lower }}{% else %} Mi Bello Hogar{% endif %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
 {% block content %}
 <div>
     {% if productos %}
-    {% for producto in productos %}
+    {% if category%}
+    <div class="title-product">
+        <h2>Productos de {{ category | lower }}</h2>
+    </div>
+    {% endif %} 
+    <div class="main">
+      {% for producto in productos %}
+      <a href="/productos/detalle/{{ producto.producto_id }}" >
+        <div class="card" id="{{ producto.producto_id }}">
+          <div class="product-image">
+            {% for imagen in imagenes %}
+              {% if imagen.producto_id == producto.producto_id %}
+                <img class="image" src="data:image/jpeg;base64,{{ imagen.imagen_data|b64encode }}" alt="Imagen principal">
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="product-details">
+            <div class="heading">{{ producto.nombre_producto }}</div>
+            <div class="description">{{ producto.descripcion }}</div>
+            <div class="price">$ {{ producto.precio|format }}</div>
+          </a>
+            <div class="buttons">
+              <button class="btn1">Comprar</button>
+              <button class="btn2">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
 
-    <h2>PRODUCTO: {{  producto[1] }}</h3>
-    {% endfor %}
     {% else %}
-    <h2>Página de productos</h3>
+    <div class="title-product">
+      <h2>Productos de Mi Bello Hogar</h2>
+    </div>
+    <div class="main">
+      {% for producto in productos %}
+        <div class="card" id="{{ producto.producto_id }}" >
+          <div class="product-image">
+            {% for imagen in imagenes %}
+              {% if imagen.producto_id == producto.producto_id %}
+                <img class="image" src="data:image/jpeg;base64,{{ imagen.imagen_data|b64encode }}" alt="Imagen principal">
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="product-details" id="{{ producto.producto_id }}">
+            <div class="heading">{{ producto.nombre_producto }}</div>
+            <div class="description">{{ producto.descripcion }}</div>
+            <div class="price">$ {{ producto.precio|format }}</div>
+            <div class="buttons">
+              <button class="btn1">Comprar</button>
+              <button class="btn2">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
     {% endif %}
 </div>
 {% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/addCart.js') }}"></script> 
+{% endblock js %}

@@ -1,0 +1,75 @@
+.title-product h2{
+  font-weight: 600;
+}
+
+
+.main{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+/* Estilo de la imagen del producto */
+.product-image img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Estilo de los detalles del producto */
+.product-details {
+  flex-grow: 1;
+}
+
+/* Estilo del nombre del producto */
+.heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Estilo de la descripción del producto */
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Estilo del precio del producto */
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo de los botones de acción */
+.buttons {
+  margin-top: 10px;
+}
+
+/* Estilo del botón "Comprar" */
+.btn1 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.btn2 {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}

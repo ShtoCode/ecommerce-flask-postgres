@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Inicio{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
 {% block content %}
 <div class="hero">
@@ -12,5 +12,16 @@
 shopping_bag
 </span></h2>
 </div>
-
+<div class="card-container">
+  {% for categoria in categorias['categorys'] %}
+  <a href="/productos/{{ categoria['categoria'] }}" class="card-category">
+    <div class="image">
+      <img src="{{ url_for('static', filename='img/' + categoria['categoria'] | lower + '.jpg') }}" alt="{{ categoria['categoria'] }}" />
+    </div>
+    <div class="container-text">
+      <h3>{{ categoria['categoria'] }}</h3>
+    </div>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}

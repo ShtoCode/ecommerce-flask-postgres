@@ -1,0 +1,70 @@
+.product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.product-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   /* Esto centra verticalmente también */
+  }
+/* Estilo para el título */
+.title-product h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las imágenes del producto */
+.product-images img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Estilo para la descripción del producto */
+.product-description h3 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.product-description p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Estilo para el precio del producto */
+.product-price h3 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.product-price p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff; /* Color azul, puedes cambiarlo */
+}
+
+/* Estilo para los botones de acción */
+.product-actions button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Color azul, puedes cambiarlo */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.product-actions button:hover {
+  background-color: #0056b3; /* Color azul más oscuro al pasar el ratón, puedes cambiarlo */
+}
