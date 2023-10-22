@@ -4,8 +4,11 @@ import requests
 
 from flask import Flask, g
 from flask_caching import Cache
+from flask_cors import CORS
 
 cache = Cache(config={"CACHE_TYPE":"SimpleCache", "CACHE_DEFAULT_TIMEOUT":48*60*60})
+
+cors =CORS(resources={r"/payment": {"origins": "https://www.mercadopago.cl"}})
 
 def create_app():
 
@@ -14,6 +17,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     cache.init_app(app)
+    cors.init_app(app)
 
     app.config.from_mapping(
         SECRET_KEY=os.environ.get('SECRET_KEY'),

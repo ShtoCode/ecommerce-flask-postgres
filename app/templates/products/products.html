@@ -2,6 +2,8 @@
 {% block title %}Productos de {% if category %}{{ category | lower }}{% else %} Mi Bello Hogar{% endif %}{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 {% endblock %}
 {% block content %}
 <div>
@@ -34,8 +36,8 @@
           </div>
         </div>
       {% endfor %}
+
     </div>
-    
 
     {% else %}
     <div class="title-product">
@@ -66,7 +68,8 @@
     
     {% endif %}
 </div>
+
 {% endblock %}
 {% block js %}
-<script src="{{ url_for('static', filename='js/addCart.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/addCart.js') }}"></script>
 {% endblock js %}

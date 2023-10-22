@@ -6,6 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Raleway", sans-serif;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -21,24 +22,25 @@ body {
 }
 
 .navbar .icono a span {
-  font-size: 2.8vh;
+  font-size: 20px;
 }
 
 .navbar .buscador {
-  margin-left: 28vw;
-  margin-top: 1vh;
+  margin-left: 560px;
+  margin-top: 20px;
 }
 
 .navbar .buscador input {
-  padding: 1.4vh 6vw;
+  padding: 15px 100px;
   border-radius: 4vw;
   border: none;
-  margin-bottom: 1vh;
+  margin-bottom: 15px;
 }
 
 .navbar a {
   text-decoration: none;
   color: white;
+
 }
 
 .navbar ul {
@@ -50,8 +52,8 @@ body {
 }
 
 .navbar ul li a {
-  font-size: 1.8vh;
-  padding: 1vh 1vw;
+  font-size: 16px;
+  padding: 15px 20px;
 }
 
 .navbar ul li a:hover {
@@ -92,7 +94,7 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
-  margin-top: 1vh;
+  margin-top: 15px;
 }
 
 .buscador {
@@ -107,13 +109,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6vh;
-  margin-left: 0.2vw;
+  font-size: 16px;
+  margin-left: 4px;
   border: none;
   background-color: #2b837f;
   color: white;
-  margin-bottom: 1vh;
-  margin-top: 0.2vh;
+  margin-bottom: 15px;
+  margin-top: 2px;
   border-radius: 0.5rem;
 }
 
@@ -134,7 +136,7 @@ body {
 }
 
 .content {
-  margin-bottom: 25vh;
+  margin-bottom: 480px;
 }
 
 footer {

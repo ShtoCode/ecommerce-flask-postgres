@@ -82,7 +82,6 @@ def login():
 
     return render_template("auth/login.html")
 
-
 @bp.before_app_request
 def load_logged_in_user():
     token = session.get('token')
@@ -91,15 +90,15 @@ def load_logged_in_user():
         g.authenticated = False
     else:
         try:
-            payload = jwt.decode(token, os.getenv(
-                'SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
+            payload = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
             g.authenticated = True
+        except jwt.ExpiredSignatureError:
             flash("El token JWT ha expirado")
             g.authenticated = False
         except jwt.InvalidTokenError:
             flash("Token JWT inválido")
             g.authenticated = False
+
 
 
 def login_required(view):
