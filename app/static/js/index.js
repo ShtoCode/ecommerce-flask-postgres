@@ -8,16 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
    });
 
    const loadCart = () => {
-    const cartSaved = localStorage.getItem("carrito");
-    if (cartSaved) {
-        carrito = JSON.parse(cartSaved);
+      const cartSaved = localStorage.getItem("carrito");
+      if (cartSaved) {
+        cart = JSON.parse(cartSaved);
         refreshCounterCart();
-    }
-}
-   const refreshCounterCart = () => {
-    const contadorCarrito = document.getElementById("contador-carrito");
-    contadorCarrito.textContent = carrito.length.toString();
-}
+      }
+    };
+const refreshCounterCart = () => {
+   const contadorCarrito = document.getElementById("contador-carrito");
+   const totalItems = cart.reduce((total, product) => total + product.cantidad, 0);
+   contadorCarrito.textContent = totalItems.toString();
+ };
+
    loadCart()
 
 

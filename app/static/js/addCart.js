@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+
+
   const refreshCounterCart = () => {
     const contadorCarrito = document.getElementById("contador-carrito");
     const totalItems = cart.reduce((total, product) => total + product.cantidad, 0);
@@ -18,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadCart();
 
-  console.log(cart);
-});
+
+
 
 const addToCart = (id, nombre, precio, cantidad = 1) => {
   const existingProductIndex = cart.findIndex((product) => product.id === id);
@@ -28,13 +30,18 @@ const addToCart = (id, nombre, precio, cantidad = 1) => {
   } else {
     const product = { id, nombre, precio, cantidad };
     cart.push(product);
+
   }
+  
+
+
   refreshCart();
   saveCart();
 
   location.reload()
-
 };
+
+
 
 const refreshCart = () => {
   const cartList = document.getElementById("contador-carrito");
@@ -58,3 +65,7 @@ botonesAgregar.forEach((btn) => {
     refreshCart();
   });
 });
+
+
+});
+
