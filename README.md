@@ -3,6 +3,7 @@
 Este es un proyecto de una aplicación de comercio electrónico desarrollada en Flask y utilizando PostgreSQL como base de datos. A continuación, se detallan los pasos para configurar y ejecutar la aplicación en su entorno de desarrollo.
 
 **Recomendación:** Se recomienda utilizar la consola de Git Bash para ejecutar los comandos a lo largo de este proceso.
+
 **Nota** Se debe levantar la API de este repositorio para levantar este proyecto: https://github.com/germanAstudillo1/api_rest.git
 
 ## Configuración del Entorno de Desarrollo
