@@ -29,6 +29,12 @@ li {
     border-radius: 5px;
 }
 
+.product-item img {
+    width: 40%;
+    height: 40%;
+}
+
+
 .product-item .product-info {
     flex: 1;
 }

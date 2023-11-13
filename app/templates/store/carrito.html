@@ -11,7 +11,8 @@ endblock %} {% block css %}
   <strong><p id="total-price">Total: $0</p></strong>
   <a class="btn-paginapago" onclick="enviarProductos()">Ir a la página de pago</a>
 </div>
-{% endblock %} {% block js %}
+{% endblock %} 
+{% block js %}
 <script src="{{ url_for('static', filename='js/addCart.js') }}"></script>
 <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
 {% endblock js %}

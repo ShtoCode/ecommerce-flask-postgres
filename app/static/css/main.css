@@ -25,6 +25,10 @@ body {
   font-size: 20px;
 }
 
+.navbar .icono{
+  margin-left: 30px;
+}
+
 .navbar .buscador {
   margin-left: 560px;
   margin-top: 20px;

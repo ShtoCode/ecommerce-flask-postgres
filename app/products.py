@@ -7,7 +7,6 @@ bp = Blueprint('products', __name__, url_prefix='/productos')
 
 
 @bp.route("/", methods=["GET"])
-@cache.cached()
 def index():
     try:
         response_productos = requests.get(f'http://localhost:8000/products')
@@ -34,7 +33,6 @@ def index():
 
 
 @bp.route("/<category>")
-@cache.cached()
 def category(category):
     try:
         response_productos = requests.get(
@@ -62,7 +60,6 @@ def category(category):
 
 
 @bp.route("/detalle/<producto>")
-@cache.cached()
 def detail(producto):
     try:
         response_producto = requests.get(
@@ -80,6 +77,7 @@ def detail(producto):
             if response_imagenes.status_code == 200:
                 imagenes = [{'producto_id': product_id, 'imagen_data': imagen_data}
                             for imagen_data in response_imagenes.iter_content(chunk_size=8192)]
+                print(imagenes)
 
                 return render_template('products/detail_product.html', mueble=product, imagenes=imagenes)
 

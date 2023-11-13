@@ -1,13 +1,12 @@
 from flask import (Blueprint, render_template, request,
                    redirect, url_for, flash, session, g)
-from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.exceptions import abort
-from app.db import get_db
 import functools
 import requests
-import jwt
+from flask_jwt_extended import decode_token
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 import json
 import os
+
 
 
 bp = Blueprint('auth', __name__, url_prefix='/user')
@@ -90,12 +89,12 @@ def load_logged_in_user():
         g.authenticated = False
     else:
         try:
-            payload = jwt.decode(token, os.getenv('SECRET_KEY'), algorithms=['HS256'])
+            payload = decode_token(token)
             g.authenticated = True
-        except jwt.ExpiredSignatureError:
+        except ExpiredSignatureError:
             flash("El token JWT ha expirado")
             g.authenticated = False
-        except jwt.InvalidTokenError:
+        except InvalidTokenError:
             flash("Token JWT inválido")
             g.authenticated = False
 

@@ -5,6 +5,7 @@ import requests
 from flask import Flask, g
 from flask_caching import Cache
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 
 cache = Cache(config={"CACHE_TYPE":"SimpleCache", "CACHE_DEFAULT_TIMEOUT":48*60*60})
 
@@ -18,6 +19,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     cache.init_app(app)
     cors.init_app(app)
+    JWTManager(app)
 
     app.config.from_mapping(
         SECRET_KEY=os.environ.get('SECRET_KEY'),
@@ -35,13 +37,13 @@ def create_app():
     from . import contact
     from . import products
     from . import auth
+    from . import payment
 
     from .db import get_db
 
     def b64encode_filter(data):
         return base64.b64encode(data).decode('utf-8')
 
-    # Agrega el filtro personalizado a Jinja2
     app.jinja_env.filters['b64encode'] = b64encode_filter
 
 
@@ -60,5 +62,6 @@ def create_app():
     app.register_blueprint(contact.bp)
     app.register_blueprint(products.bp)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(payment.bp)
 
     return app
