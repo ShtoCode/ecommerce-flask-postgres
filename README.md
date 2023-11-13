@@ -4,7 +4,7 @@ Este es un proyecto de una aplicación de comercio electrónico desarrollada en 
 
 **Recomendación:** Se recomienda utilizar la consola de Git Bash para ejecutar los comandos a lo largo de este proceso.
 
-**Nota** Se debe levantar la API de este repositorio para levantar este proyecto: https://github.com/germanAstudillo1/api_rest.git
+**Nota:** Se debe levantar la API de este repositorio para levantar este proyecto: https://github.com/germanAstudillo1/api_rest.git
 
 ## Configuración del Entorno de Desarrollo
 
