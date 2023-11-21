@@ -226,8 +226,8 @@ footer {
   .navbar ul.show-menu {
     display: block;
     position: absolute;
-    top: 6%;
-    left: 56%;
+    top: 5%;
+    left: 50%;
     background-color: #004943;
   }
 
@@ -313,4 +313,34 @@ footer {
   .show-menu {
     display: block !important;
   }
+}
+
+@media (max-width: 768px) {
+  .navbar .burger {
+    display: none;
+  }
+
+  .navbar .buscador{
+    width: 300px;
+  }
+  
+  .navbar .buscador input {
+    width: 200px;
+    padding: 0;
+  }
+
+  .navbar .buscador input::placeholder{
+    padding: 0;
+    text-align: center;
+  }
+
+  .navbar .icono{
+    margin-left: 10px;
+  }
+
+  .menu-toggle{
+    margin-left: -40px;
+  }
+
+
 }

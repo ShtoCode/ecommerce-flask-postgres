@@ -1,0 +1,41 @@
+.success-card {
+  max-width: 600px;
+  margin: 60px auto;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.success-card .titulo {
+  background-color: #004943;
+  color: white;
+  padding: 30px;
+  margin-top: 0;
+}
+
+.success-card p{
+  margin-left: 10px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: auto;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th{
+  background-color: #004343;
+  color: white;
+}
+
+media (max-width: 768px) {
+  .success-card {
+    margin: 20px;
+  }
+}

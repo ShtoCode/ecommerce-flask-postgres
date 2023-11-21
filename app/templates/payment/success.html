@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Pago éxitoso - Mi Bello Hogar{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}">
+{% endblock css %}
+{% block content %}
+<div class="success-card">
+    <div class="titulo">
+    <h2 class="">¡Tu pedido ha sido procesado con éxito!</h2>
+</div>
+    <p>Muchas gracias por comprar en Mi Bello Hogar, en breve te contactaremos para coordinar la entrega de tus productos.</p>
+    <p>Detalle de productos comprados:</p>
+    <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product['nombre'] }}</td>
+                <td>{{ product['cantidad'] }}</td>
+                <td id="precio">${{ product['precio'] }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <p id="total">TOTAL ${{ total }}</p>
+
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+const precioElement = document.getElementById("precio");
+const precio = parseFloat(precioElement.textContent.replace('$', '').replace(/\./g, '').replace(',', '.'));
+const totalElement = document.getElementById("total")
+const total = parseFloat(totalElement.textContent.replace("TOTAL $", ''))
+
+function formatearNumero(numero) {
+    return numero.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+}
+
+const precioFormateado = formatearNumero(precio);
+
+precioElement.innerHTML = precioFormateado
+totalElement.innerHTML = "<strong>" + "TOTAL: "  + formatearNumero(total) + "</strong>"
+</script>
+{% endblock js %}

@@ -66,12 +66,12 @@ if (productos.length > 0) {
 
 const showProductsInCart = () => {
   const listaProductos = document.getElementById("cart-items");
-  listaProductos.innerHTML = ""; 
+  listaProductos.innerHTML = "";
 
   const groupedProducts = {};
 
   for (const product of productos) {
-    const productId = product.id; 
+    const productId = product.id;
     if (!groupedProducts[productId]) {
       groupedProducts[productId] = {
         product: product,
@@ -144,9 +144,8 @@ const showProductsInCart = () => {
 const generateQuantityOptions = (selectedQuantity) => {
   let options = "";
   for (let i = 1; i <= 5; i++) {
-    options += `<option value="${i}" ${
-      i === selectedQuantity ? "selected" : ""
-    }>${i}</option>`;
+    options += `<option value="${i}" ${i === selectedQuantity ? "selected" : ""
+      }>${i}</option>`;
   }
   return options;
 };
@@ -187,7 +186,7 @@ function actualizarPrecio(select) {
 
 
 const enviarProductos = () => {
-  const data = {carrito : productos,}
+  const data = { carrito: productos, }
   fetch("/payment", {
     method: 'POST',
     headers: {
@@ -195,12 +194,12 @@ const enviarProductos = () => {
     },
     body: JSON.stringify(data),
   })
-  .then(response => response.json())
-  .then(responseData => {
-    window.location.href = responseData.pagina_pago
-  })
-  .catch(error => {
-    console.error('Error al enviar los datos a la ruta', error)
-  })
+    .then(response => response.json())
+    .then(responseData => {
+      window.location.href = responseData.pagina_pago
+    })
+    .catch(error => {
+      console.error('Error al enviar los datos a la ruta de pago', error)
+    })
 
 }

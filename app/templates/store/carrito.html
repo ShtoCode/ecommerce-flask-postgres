@@ -9,7 +9,7 @@ endblock %} {% block css %}
   <h1>Carrito de compras</h1>
   <ul id="cart-items"></ul>
   <strong><p id="total-price">Total: $0</p></strong>
-  <a class="btn-paginapago" onclick="enviarProductos()">Ir a la página de pago</a>
+  <a class="btn-paginapago" href="{{ url_for('') }}" >Ir a pagar</a>
 </div>
 {% endblock %} 
 {% block js %}

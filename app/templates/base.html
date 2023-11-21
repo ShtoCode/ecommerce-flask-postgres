@@ -27,7 +27,7 @@
     <nav class="navbar">
       <div class="icono">
         <a to="/" >
-          <span
+          <span id="titulo-navbar"
             >Mi Bello Hogar</span
           >
         </a>
@@ -95,6 +95,15 @@
 </footer>
 
     {% block js %} {% endblock %}
+    <script>
+      const titulo = document.getElementById("titulo-navbar");
+      const cambiarContenido = () => {
+        if (window.innerWidth < 768) {
+          titulo.textContent = "M.B.H";
+        }
+      }
+      cambiarContenido()
+    </script>
     
   </body>
 

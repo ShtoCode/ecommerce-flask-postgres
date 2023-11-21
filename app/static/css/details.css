@@ -1,22 +1,32 @@
+@import url("main.css");
+
+#titulo-navbar {
+  color: white;
+}
+
+.menu-toggle{
+  margin-right: 10px;
+}
+
 .product{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #fff;
+    margin-top: 10px;
 }
 
 .product-details {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   /* Esto centra verticalmente también */
   }
-/* Estilo para el título */
+
 .title-product h2 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -68,3 +78,181 @@
 .product-actions button:hover {
   background-color: #0056b3; /* Color azul más oscuro al pasar el ratón, puedes cambiarlo */
 }
+
+
+@media (max-width: 768px) {
+  .navbar .burger {
+    display: none;
+  }
+
+  .navbar ul:not(.burger) {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar .icono a span {
+    font-size: 2.4vh;
+  }
+
+  .navbar .buscador {
+    margin-left: 2vw;
+    margin-top: 1vh;
+  }
+
+  .navbar .buscador input {
+    border-radius: 4vw;
+    border: none;
+    width: 30vw;
+    font-size: 1.3vh;
+    margin-bottom: 1vh;
+  }
+
+  .navbar .buscador .btn-search {
+    width: 10vw;
+    border-radius: 50%;
+  }
+
+  .navbar .buscador .text-btn-search {
+    display: none;
+  }
+  .menu-toggle {
+    margin-left: 10vw;
+  }
+
+  .menu-toggle span {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    display: block;
+    margin: 5px auto;
+  }
+  .navbar ul.show-menu {
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 56%;
+    background-color: #004943;
+    z-index: 1;
+  }
+
+  .carousel-control-prev-icon span{
+    z-index: 2 !important;
+  }
+
+  .navbar ul li a {
+    font-size: 1.5vh;
+    padding: 1vh 1vw;
+  }
+
+  .navbar ul.show-menu li {
+    padding: 10px;
+  }
+}
+
+.burger {
+  display: none;
+}
+
+.show-menu {
+  display: block !important;
+}
+
+
+.flash{
+  background-color: red;
+  width: 30vw;
+  padding: 30px 30px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 35vw;
+}
+
+
+
+@media (max-width: 1644px) {
+  .navbar .burger {
+    display: none;
+  }
+
+  .navbar ul:not(.burger) {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar .icono a span {
+    font-size: 2.4vh;
+  }
+
+  .navbar .buscador {
+    margin-left: 2vw;
+    margin-top: 1vh;
+  }
+
+  .navbar .buscador input {
+    border-radius: 4vw;
+    border: none;
+    width: 30vw;
+    font-size: 1.3vh;
+    margin-bottom: 1vh;
+  }
+
+  .navbar .buscador .btn-search {
+    width: 10vw;
+    border-radius: 50%;
+  }
+
+  .navbar .buscador .text-btn-search {
+    display: none;
+  }
+  .menu-toggle {
+    margin-left: 10vw;
+  }
+
+  .menu-toggle span {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    display: block;
+    margin: 5px auto;
+  }
+  .show-menu {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .burger {
+    display: none;
+  }
+
+  .navbar .buscador{
+    width: 300px;
+  }
+  
+  .navbar .buscador input {
+    width: 200px;
+    padding: 0;
+  }
+
+  .navbar .buscador input::placeholder{
+    padding: 0;
+    text-align: center;
+  }
+
+  .navbar .icono{
+    margin-left: 10px;
+  }
+
+  .menu-toggle{
+    margin-left: -40px;
+  }
+
+
+}
+
