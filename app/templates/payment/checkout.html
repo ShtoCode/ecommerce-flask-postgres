@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Registrarse{% endblock %}
+{% block title %}Checkout{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
 {% endblock %}
 {% block content %}
 <div class="card">
-  <h3 class="title">Bienvenid@ a Mi Bello Hogar</h3>
-  <span class="subtitle">Vamos a crear tu cuenta!</span>
+  <h3 class="title">Un paso más sobre tu compra</h3>
+  <span class="subtitle">Vamos a registrar tus datos de entrega!</span>
   <form class="form" action="" method="POST">
     <div class="group">
     <input placeholder="‎" type="text" name="name" id="name" required="">
@@ -17,14 +17,6 @@
     <label for="email">Correo</label>
     </div>
 <div class="group">
-    <input placeholder="‎" type="text" id="user" name="user" required="">
-    <label for="user">Usuario</label>
-    </div>
-<div class="group">
-    <input placeholder="‎" type="password" id="pass" name="pass" required="">
-    <label for="pass">Contraseña</label>
-    </div>
-<div class="group">
     <input placeholder="‎" type="numeric" id="phone" name="phone" required="">
     <label for="phone">Telefono</label>
     </div>
@@ -32,7 +24,7 @@
     <input placeholder="‎" type="text" id="address" name="address" required="">
     <label for="address">Dirección</label>
     </div>
-    <button id="btn-submit" type="submit">Registrar</button>
+    <button id="btn-submit" type="submit">Ir a pagar</button>
   </form>
 </div>
 {% endblock %}

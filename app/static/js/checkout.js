@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnSubmit = document.getElementById("btn-submit");
 
   form.addEventListener("submit", async function (event) {
-    btnSubmit.textContent = "Enviando...";
+    btnSubmit.textContent = "Cargando...";
 
     btnSubmit.disabled = true;
 
@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "POST",
         body: new FormData(form),
       });
-
-      console.log(response);
 
       if (response.ok) {
         btnSubmit.textContent = "Enviar";

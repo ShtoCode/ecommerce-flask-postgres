@@ -19,16 +19,31 @@ mp = mercadopago.SDK(ACCESS_TOKEN)
 def checkout():
     if g.authenticated:
         return redirect(url_for('payment.payment'))
-
+    
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        email = request.form.get('email')
-        telefono = request.form.get('telefono')
-        direccion = request.form.get('direccion')
-        error = None
-        if not nombre or not email or not telefono or not direccion:
-            error = "Todos los campos son obligatorios"
-            return render_template('payment/checkout.html', error=error)
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        address = request.form['address']
+        
+        db = get_db()
+        c = db.cursor()
+        c.execute("SELECT cliente_id FROM cliente WHERE email = %s", (email,))
+        cliente_exists = c.fetchone()
+        cliente_id = None
+        if cliente_exists:
+            cliente_id = cliente_exists[0]
+        else:
+            c.execute(
+                "INSERT INTO cliente (nombre, email, telefono, direccion) VALUES (%s, %s, %s, %s)",
+                (name, email, phone, address),
+            )
+            db.commit()
+            cliente_id = c.lastrowid
+        session['cliente_id'] = cliente_id
+
+        return redirect(url_for('payment.payment'))
+
 
     return render_template('payment/checkout.html')
 

@@ -17,6 +17,7 @@ def register():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
+        user = request.form['user']
         password = request.form['pass']
         phone = request.form['phone']
         addres = request.form['address']
@@ -27,7 +28,7 @@ def register():
         if not password:
             error = 'Password es requerido'
 
-        data = {"name": name, "email": email, "password": password,
+        data = {"name": name, "email": email, "user": user, "password": password,
                 "telefono": phone, "direccion": addres}
 
         json_data = json.dumps(data)
@@ -35,7 +36,9 @@ def register():
         headers = {'Content-Type': 'application/json'}
 
         response = requests.post(
-            'http://localhost:8000/clients/', data=json_data, headers=headers)
+            'http://localhost:8000/clients/user', data=json_data, headers=headers)
+
+        print("response", response)
         
         if response.status_code == 200:
             token = response.json().get('token')
@@ -53,10 +56,10 @@ def register():
 def login():
     if request.method == "POST":
         try:
-            email = request.form['email']
+            user = request.form['user']
             password = request.form['pass']
 
-            data = {'email': email, 'password': password}
+            data = {'user': user, 'password': password}
 
             json_data = json.dumps(data)
 
