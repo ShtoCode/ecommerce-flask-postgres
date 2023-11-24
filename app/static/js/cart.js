@@ -4,11 +4,11 @@ const productQuantities = {};
 
 const calculateTotal = () => {
   let total = 0;
-  let cantidadTotal = 0
+  let cantidadTotal = 0;
 
   for (const product of productos) {
     total += product.precio * (productQuantities[product.id] || 0);
-    cantidadTotal += product.cantidad
+    cantidadTotal += product.cantidad;
   }
 
   return { total, cantidadTotal };
@@ -18,17 +18,16 @@ function formatearNumero(numero) {
   return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-
-
 const updateTotal = () => {
   const totalElement = document.getElementById("total-price");
   const { total, cantidadTotal } = calculateTotal();
-  const totalFormated = formatearNumero(total)
-  totalElement.textContent = `TOTAL (${cantidadTotal} producto${cantidadTotal === 1 ? '' : 's'})  $${totalFormated}`;
+  const totalFormated = formatearNumero(total);
+  totalElement.textContent = `TOTAL (${cantidadTotal} producto${
+    cantidadTotal === 1 ? "" : "s"
+  })  $${totalFormated}`;
 };
 
 if (productos.length > 0) {
-
   for (const product of productos) {
     const productId = product.id;
 
@@ -79,7 +78,6 @@ const showProductsInCart = () => {
       };
     }
     groupedProducts[productId].quantity += product.cantidad;
-
   }
 
   for (const groupId in groupedProducts) {
@@ -144,15 +142,16 @@ const showProductsInCart = () => {
 const generateQuantityOptions = (selectedQuantity) => {
   let options = "";
   for (let i = 1; i <= 5; i++) {
-    options += `<option value="${i}" ${i === selectedQuantity ? "selected" : ""
-      }>${i}</option>`;
+    options += `<option value="${i}" ${
+      i === selectedQuantity ? "selected" : ""
+    }>${i}</option>`;
   }
   return options;
 };
 
 function removeFromCart(productId) {
   const productIndex = productos.findIndex(
-    (product) => product.id === productId
+    (product) => product.id === productId,
   );
 
   if (productIndex !== -1) {
@@ -184,22 +183,15 @@ function actualizarPrecio(select) {
   }
 }
 
-
 const enviarProductos = () => {
-  const data = { carrito: productos, }
-  fetch("/payment", {
-    method: 'POST',
+  const data = { carrito: productos };
+  fetch("/carrito", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  })
-    .then(response => response.json())
-    .then(responseData => {
-      window.location.href = responseData.pagina_pago
-    })
-    .catch(error => {
-      console.error('Error al enviar los datos a la ruta de pago', error)
-    })
-
-}
+  }).catch((error) => {
+    console.error("Error al enviar los datos a la ruta de carrito", error);
+  });
+};

@@ -40,9 +40,9 @@ def checkout():
             )
             db.commit()
             cliente_id = c.lastrowid
+
         session['cliente_id'] = cliente_id
 
-        return redirect(url_for('payment.payment'))
 
 
     return render_template('payment/checkout.html')
@@ -52,7 +52,6 @@ def checkout():
 def payment():
     data = request.get_json()
     carrito = data['carrito']
-    session['products'] = carrito
     monto = 0
     cantidad_producto = {}
     for item in carrito:

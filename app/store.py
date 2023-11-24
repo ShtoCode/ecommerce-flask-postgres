@@ -1,5 +1,5 @@
 from flask import (Blueprint, render_template, request,
-                   jsonify, g, redirect)
+                   jsonify, g, redirect, url_for)
 
 import requests
 
@@ -21,7 +21,15 @@ def index():
     except Exception as e:
         return {"error": str(e)}, 500
 
+@bp.route("/carrito", methods=['POST'])
+def carrito():
+    data = request.get_json()
+    carrito = data['carrito']
+    print(carrito)
+    return redirect(url_for('payment.checkout'))
 
 @bp.route("/carrito", methods=['GET'])
 def cart():
     return render_template('store/carrito.html')
+
+
