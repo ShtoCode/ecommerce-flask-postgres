@@ -16,7 +16,11 @@
     <input placeholder="‎" type="password" id="pass" name="pass" required="">
     <label for="pass">Contraseña</label>
     </div>
-    <button type="submit">Ingresar</button>
+    <button id="btn-submit" type="submit">Ingresar</button>
   </form>
 </div>
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src='{{ url_for('static', filename='js/login.js') }}'></script>
+{% endblock %}
 {% endblock %}

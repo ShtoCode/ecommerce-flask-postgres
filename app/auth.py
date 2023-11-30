@@ -8,7 +8,6 @@ import json
 import os
 
 
-
 bp = Blueprint('auth', __name__, url_prefix='/user')
 
 
@@ -39,16 +38,16 @@ def register():
             'http://localhost:8000/clients/user', data=json_data, headers=headers)
 
         print("response", response)
-        
+
         if response.status_code == 200:
             token = response.json().get('token')
             session.clear()
             session['token'] = token
             return redirect(url_for('store.index'))
         else:
-            error = "Hubo un error al crear la cuenta, porfavor intenta más tarde"
+            error = "Credenciales incorrectas"
+            return {"error": str(error)}, 500
 
-        flash(error)
     return render_template('auth/register.html')
 
 
@@ -67,7 +66,7 @@ def login():
 
             response = requests.post(
                 'http://localhost:8000/clients/login/', data=json_data, headers=headers)
-
+            print("response", response)
             if response.status_code == 200:
                 token = response.json().get('token')
 
@@ -76,13 +75,13 @@ def login():
                 return redirect(url_for('store.index'))
 
             else:
-                error = "Email y/o contraseña incorrecta"
-                flash(error)
+                return {"error": "Credenciales incorrectas"}, 500
 
         except Exception as e:
             return {"error": str(e)}, 500
 
     return render_template("auth/login.html")
+
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -90,17 +89,20 @@ def load_logged_in_user():
 
     if token is None:
         g.authenticated = False
+        g.client_id = None
     else:
         try:
             payload = decode_token(token)
+            client_id = payload['sub']
+            g.client_id = client_id
+            g.name = payload['name']
             g.authenticated = True
         except ExpiredSignatureError:
-            flash("El token JWT ha expirado")
+            flash("El token JWT ha xpirado")
             g.authenticated = False
         except InvalidTokenError:
             flash("Token JWT inválido")
             g.authenticated = False
-
 
 
 def login_required(view):

@@ -18,14 +18,15 @@ mp = mercadopago.SDK(ACCESS_TOKEN)
 @bp.route("/checkout", methods=['GET', 'POST'])
 def checkout():
     if g.authenticated:
+        session['cliente_id'] = g.client_id
         return redirect(url_for('payment.payment'))
-    
+
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
         address = request.form['address']
-        
+
         db = get_db()
         c = db.cursor()
         c.execute("SELECT cliente_id FROM cliente WHERE email = %s", (email,))
@@ -42,16 +43,16 @@ def checkout():
             cliente_id = c.lastrowid
 
         session['cliente_id'] = cliente_id
+        session['purchase_completed'] = False
 
-
+        return redirect(url_for('payment.payment'))
 
     return render_template('payment/checkout.html')
 
 
-@bp.route("/", methods=['POST'])
+@bp.route("/", methods=['GET'])
 def payment():
-    data = request.get_json()
-    carrito = data['carrito']
+    carrito = session.get('carrito', [])
     monto = 0
     cantidad_producto = {}
     for item in carrito:
@@ -59,6 +60,7 @@ def payment():
         cantidad = int(item['cantidad'])
         monto += cantidad * precio
         cantidad_producto[item['nombre']] = cantidad
+    print(cantidad_producto)
 
     preference = {
         "items": [
@@ -74,55 +76,84 @@ def payment():
             "failure": "http://localhost:5000/payment/failure",
             "pending": "http://localhost:5000/payment/pending",
         },
-        "notification_url": "https://832e-143-255-104-32.ngrok-free.app/payment/webhook",
+        "notification_url": "https://5f2c-143-255-104-32.ngrok-free.app//payment/webhook",
     }
 
     preference_result = mp.preference().create(preference)
+    print(preference_result)
     preference_link = preference_result['response']['init_point']
 
-    return jsonify({"pagina_pago": preference_link})
+    return redirect(preference_link)
 
 
 @bp.route("/webhook", methods=['POST'])
 def receive_webhook():
     data = request.json
+    print("data", data)
     return data
 
 
 @bp.route("/success", methods=['GET'])
 def success_pay():
-    products = session.get('products', [])
-    productos_info = [{'nombre': product['nombre'], 'precio': product['precio'],
-                       'cantidad': product['cantidad']} for product in products]
+    productos = session.get('carrito', [])
+    print("productos cantidad", len(productos))
 
     precio_total = sum(producto['precio'] * producto['cantidad']
-                       for producto in productos_info)
+                       for producto in productos)
+    if not session.get('purchase_completed'):
+        cliente_id = session.get('cliente_id')
+        db = get_db()
+        c = db.cursor()
 
-    for product in products:
-        nombre = product['nombre']
-        cantidad = product['cantidad']
-        precio = product['precio']
+        try:
+            c.execute(
+                "BEGIN TRANSACTION"
+            )
 
-    # db = get_db()
-    # c = db.cursor()
-    #
-    # c.execute(
-    #     """UPDATE products SET stock = stock - ? WHERE nombre = ?""",
-    #     (cantidad, nombre),
-    # )
-    #
-    # c.execute(
-    #     """INSERT INTO compra (id, nombre, cantidad) VALUES (?, ?, ?)""",
-    # )
-    #
-    return render_template('payment/success.html', products=productos_info, total=precio_total)
+            for producto in productos:
+                nombre = producto['nombre']
+                precio = producto['precio']
+                cantidad = producto['cantidad']
+                c.execute(
+                    "UPDATE producto SET stock = stock - %s WHERE nombre_producto = %s", (
+                        cantidad, nombre)
+                )
+
+            c.execute(
+                "INSERT INTO compra (cliente_id, total_compra, estado) VALUES (%s, %s, %s) RETURNING compra_id", (
+                    cliente_id, precio_total, 'completada')
+            )
+
+            compra_id = c.fetchone()[0]
+            print("compra_id", compra_id)
+
+            for producto in productos:
+                producto_id = producto['id']
+                precio = producto['precio']
+                cantidad = producto['cantidad']
+                c.execute(
+                    "INSERT INTO detalle_compra (compra_id, producto_id, precio, cantidad) VALUES (%s, %s, %s, %s)", (
+                        compra_id, producto_id, precio, cantidad)
+                )
+
+            c.execute(
+                "COMMIT"
+            )
+
+            session['purchase_completed'] = True
+
+            return render_template('payment/success.html', products=productos, total=precio_total)
+        finally:
+            c.close()
+    else:
+        return render_template('payment/success.html', products=productos, total=precio_total)
 
 
-@bp.route("/failure", methods=['GET'])
+@ bp.route("/failure", methods=['GET'])
 def failure_pay():
     return render_template('payment/failure.html')
 
 
-@bp.route("/pending", methods=['GET'])
+@ bp.route("/pending", methods=['GET'])
 def pending_pay():
     return render_template('payment/pending.html')

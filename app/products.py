@@ -9,7 +9,8 @@ bp = Blueprint('products', __name__, url_prefix='/productos')
 @bp.route("/", methods=["GET"])
 def index():
     try:
-        response_productos = requests.get(f'http://localhost:8000/products')
+        response_productos = requests.get(
+            f'http://localhost:8000/products/display')
 
         if response_productos.status_code == 200:
             productos_data = response_productos.json()
@@ -36,7 +37,7 @@ def index():
 def category(category):
     try:
         response_productos = requests.get(
-            f'http://localhost:8000/products/{category}')
+            f'http://localhost:8000/products/{category}/display')
 
         if response_productos.status_code == 200:
             productos_data = response_productos.json()

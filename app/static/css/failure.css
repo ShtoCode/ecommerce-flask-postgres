@@ -1,0 +1,41 @@
+.failure-card {
+  max-width: 600px;
+  margin: 60px auto;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+
+}
+
+.failure-card .titulo {
+  background-color: #004943;
+  color: white;
+  padding: 30px;
+  margin-top: 0;
+}
+
+.failure-card p{
+  margin-left: 10px;
+}
+
+
+.btn-pago {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    background-color: #2b837f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-pago:hover {
+  background-color: #004943;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .failure-card {
+    margin: 20px;
+  }
+}

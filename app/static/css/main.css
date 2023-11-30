@@ -55,9 +55,10 @@ body {
   margin-left: 3rem;
 }
 
+
 .navbar ul li a {
-  font-size: 16px;
-  padding: 15px 20px;
+  font-size: 15px;
+  padding: 15px 10px;
 }
 
 .navbar ul li a:hover {
@@ -232,8 +233,7 @@ footer {
   }
 
   .navbar ul li a {
-    font-size: 1.5vh;
-    padding: 1vh 1vw;
+    font-size: 6px;
   }
 
   .navbar ul.show-menu li {

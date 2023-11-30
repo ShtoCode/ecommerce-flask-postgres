@@ -14,6 +14,7 @@
     align-items: center;
     flex-direction: column;
     background-color: #fff;
+    height: 1200px;
     margin-top: 10px;
 }
 
@@ -28,18 +29,17 @@
   }
 
 .title-product h2 {
+  margin-top: -40px;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Estilo para las imágenes del producto */
 .product-images img {
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
 
-/* Estilo para la descripción del producto */
 .product-description h3 {
   font-size: 18px;
   margin-top: 20px;
@@ -51,7 +51,6 @@
   margin-bottom: 20px;
 }
 
-/* Estilo para el precio del producto */
 .product-price h3 {
   font-size: 18px;
   margin-top: 20px;
@@ -60,14 +59,12 @@
 .product-price p {
   font-size: 20px;
   font-weight: bold;
-  color: #007bff; /* Color azul, puedes cambiarlo */
 }
 
-/* Estilo para los botones de acción */
 .product-actions button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff; /* Color azul, puedes cambiarlo */
+  background-color: #2b837f;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -76,7 +73,7 @@
 }
 
 .product-actions button:hover {
-  background-color: #0056b3; /* Color azul más oscuro al pasar el ratón, puedes cambiarlo */
+  background-color: #004943; 
 }
 
 

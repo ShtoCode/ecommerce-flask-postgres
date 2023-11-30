@@ -1,4 +1,8 @@
-.categories h2 {
+.categories, .products {
+  text-align: center;
+}
+
+h2 {
   font-weight: 400;
 }
 
@@ -14,6 +18,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 80px;
 }
 
 .card-category {
@@ -24,30 +29,27 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
   background-color: #f9f9f9;
-  text-decoration: none; /* Elimina la decoración de enlace */
+  text-decoration: none; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s; /* Agrega una transición suave para el efecto hover */
+  transition: transform 0.2s;
 }
 
 
 
-/* Estilo para la imagen */
 .card-category .image img {
-  width: 100%; /* Hace que todas las imágenes tengan el mismo ancho */
+  width: 100%; 
   height: auto;
-  max-height: 200px; /* Altura máxima para las imágenes */
+  max-height: 200px;
 }
 
-/* Estilo para el título */
 .card-category .container-text h3 {
   font-size: 20px;
   margin-top: 10px;
   color: #333;
 }
 
-/* Estilo para el efecto hover */
 .card-category:hover {
-  transform: scale(1.2); /* Agranda la tarjeta en un 5% cuando se hace hover */
+  transform: scale(1.2); 
 }

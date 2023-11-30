@@ -22,9 +22,8 @@ const updateTotal = () => {
   const totalElement = document.getElementById("total-price");
   const { total, cantidadTotal } = calculateTotal();
   const totalFormated = formatearNumero(total);
-  totalElement.textContent = `TOTAL (${cantidadTotal} producto${
-    cantidadTotal === 1 ? "" : "s"
-  })  $${totalFormated}`;
+  totalElement.textContent = `TOTAL (${cantidadTotal} producto${cantidadTotal === 1 ? "" : "s"
+    })  $${totalFormated}`;
 };
 
 if (productos.length > 0) {
@@ -142,9 +141,8 @@ const showProductsInCart = () => {
 const generateQuantityOptions = (selectedQuantity) => {
   let options = "";
   for (let i = 1; i <= 5; i++) {
-    options += `<option value="${i}" ${
-      i === selectedQuantity ? "selected" : ""
-    }>${i}</option>`;
+    options += `<option value="${i}" ${i === selectedQuantity ? "selected" : ""
+      }>${i}</option>`;
   }
   return options;
 };
@@ -191,7 +189,13 @@ const enviarProductos = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).catch((error) => {
-    console.error("Error al enviar los datos a la ruta de carrito", error);
-  });
+  })
+    .then((response) => {
+      if (response.ok) {
+        window.location.href = "/payment/checkout";
+      }
+    })
+    .catch((error) => {
+      console.error("Error al enviar los datos a la ruta de carrito", error);
+    });
 };

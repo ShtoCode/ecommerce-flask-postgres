@@ -7,12 +7,13 @@ from flask_caching import Cache
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
-cache = Cache(config={"CACHE_TYPE":"SimpleCache", "CACHE_DEFAULT_TIMEOUT":48*60*60})
+cache = Cache(config={"CACHE_TYPE": "SimpleCache",
+              "CACHE_DEFAULT_TIMEOUT": 48*60*60})
 
-cors =CORS(resources={r"/payment": {"origins": "https://www.mercadopago.cl"}})
+cors = CORS(resources={r"/payment": {"origins": "https://www.mercadopago.cl"}})
+
 
 def create_app():
-
 
     app = Flask(__name__)
 
@@ -32,7 +33,6 @@ def create_app():
 
     )
 
-
     from . import store
     from . import contact
     from . import products
@@ -46,17 +46,15 @@ def create_app():
 
     app.jinja_env.filters['b64encode'] = b64encode_filter
 
-
     @app.before_request
     def before_request():
         try:
-            response = requests.get("http://127.0.0.1:8000/categorys")
+            response = requests.get("http://127.0.0.1:8000/categorys/display")
             if response.status_code == 200:
                 data = response.json()
                 g.categorias = data
         except:
             return {"error": "Error al obtener datos de FastAPI"}, 500
-
 
     app.register_blueprint(store.bp)
     app.register_blueprint(contact.bp)

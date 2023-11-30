@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const form = document.querySelector(".form");
   const btnSubmit = document.getElementById("btn-submit");
 
-  form.addEventListener("submit", async function (event) {
+  form.addEventListener("submit", async function(event) {
     btnSubmit.textContent = "Enviando...";
 
     btnSubmit.disabled = true;
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Swal.fire({
           position: "top",
           icon: "error",
-          title: "Hubo un error al enviar el formulario :(",
+          title: "Error al registrar usuario, usuario y/o correo ya existen!",
           showConfirmButton: false,
           timer: 1500,
         });

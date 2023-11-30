@@ -51,6 +51,7 @@
         </li>
         <li><a href="{{ url_for('contact.index') }}">Contacto</a></li>
         {% if g.authenticated == true %}
+        <li><a>Bienvenid@ {{ g.name|capitalize }}</a></li>
         <li><a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a></li>
         {% else %}
         <li><a href="{{ url_for('auth.register') }}">Registrarse</a></li>

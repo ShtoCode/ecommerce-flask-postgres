@@ -2,14 +2,91 @@
 {% block title %}Pago éxitoso - Mi Bello Hogar{% endblock title %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/success.css') }}">
+<style>
+
+        .review-container {
+            max-width: 450px;
+            margin: 0 auto;
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+        }
+        .title-review{
+            background-color: #004943;
+            color: white;
+            font-size: 20px;
+            padding: 20px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            width: 100%;
+            margin-top: -20px;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            font-size: 2rem;
+            color: #ccc;   
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: gold;
+        }
+
+        .rating input:checked ~ label {
+            color: gold; 
+        }
+        textarea {
+          resize: none;
+          height: 100px;
+          width: 98%;
+        }
+
+        .btn-reseña {
+            margin-top: 20px;
+            background-color: #2b837f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            width: 22vw;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reseña:hover {
+            background-color: #004943;
+        }
+
+
+</style>
 {% endblock css %}
 {% block content %}
 <div class="success-card">
     <div class="titulo">
     <h2 class="">¡Tu pedido ha sido procesado con éxito!</h2>
 </div>
-    <p>Muchas gracias por comprar en Mi Bello Hogar, en breve te contactaremos para coordinar la entrega de tus productos.</p>
-    <p>Detalle de productos comprados:</p>
+<div class="container-card">
+    <p><strong>Muchas gracias por comprar en Mi Bello Hogar, en breve te contactaremos para coordinar la entrega de tus productos.</strong></p>
+    <p><strong>Detalle de productos comprados:</strong></p>
     <table class="table">
             <tr>
                 <th>Nombre</th>
@@ -26,8 +103,34 @@
     </table>
 
     <p id="total">TOTAL ${{ total }}</p>
+</div>
+</div>
+{% if products|length == 1 %}
+<div class="review-container">
+    <h5 class="title-review">¿Deseas agregar una reseña al producto?</h5>
+    <form action="/payment/review" method="POST">
+        <label for="rating">Califica el producto:</label>
+         <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"><i class="fas fa-star"></i></label>
+        </div>
+        <label for="review">Escribe una reseña:</label>
+        <textarea id="review" name="review"></textarea>
+        <br>
+        <input type="submit" class="btn-reseña" value="Enviar">
+    </form>
 
 </div>
+{% endif %}
+
 {% endblock content %}
 {% block js %}
 <script>
@@ -44,5 +147,6 @@ const precioFormateado = formatearNumero(precio);
 
 precioElement.innerHTML = precioFormateado
 totalElement.innerHTML = "<strong>" + "TOTAL: "  + formatearNumero(total) + "</strong>"
+localStorage.removeItem("carrito")
 </script>
 {% endblock js %}

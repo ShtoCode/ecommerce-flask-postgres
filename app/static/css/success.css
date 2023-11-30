@@ -1,6 +1,7 @@
 .success-card {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 60px auto;
+  margin-bottom: 120px;
   border: 3px solid #ccc;
   border-radius: 5px;
 
@@ -11,6 +12,12 @@
   color: white;
   padding: 30px;
   margin-top: 0;
+}
+
+.container-card{
+  margin-top:-12px;
+  background-color: #fff;
+  margin-bottom: -13.5px;
 }
 
 .success-card p{
@@ -34,7 +41,7 @@ th{
   color: white;
 }
 
-media (max-width: 768px) {
+@media (max-width: 768px) {
   .success-card {
     margin: 20px;
   }
