@@ -41,6 +41,4 @@ def cart():
         data = request.get_json()
         carrito = data['carrito']
         session['carrito'] = carrito
-        print("PRODUCTOS EN SESSION", session["carrito"])
-        return redirect(url_for('payment.checkout'))
     return render_template('store/carrito.html')

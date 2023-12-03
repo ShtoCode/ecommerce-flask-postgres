@@ -18,7 +18,6 @@
 
     {% block css %} {% endblock %}
     <script src="{{ url_for('static', filename='font-awesome/all.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 
   </head>
@@ -95,6 +94,7 @@
     </div>
 </footer>
 
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     {% block js %} {% endblock %}
     <script>
       const titulo = document.getElementById("titulo-navbar");

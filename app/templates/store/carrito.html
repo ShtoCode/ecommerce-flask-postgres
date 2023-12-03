@@ -15,4 +15,42 @@ endblock %} {% block css %}
 {% block js %}
 <script src="{{ url_for('static', filename='js/addCart.js') }}"></script>
 <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+<script>
+  const isAuthenticated = {{ g.authenticated | tojson }};
+const enviarProductos = () => {
+  const data = { carrito: productos };
+  fetch("/carrito", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+        if (isAuthenticated) {
+          fetch("/payment/checkout/user", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          })
+            .then((response) => {
+              if (response.ok) {
+                response.json().then((data) => {
+                  window.location.href = data.link_pago;
+                })
+              }
+            })
+        }else{
+        window.location.href = "/payment/checkout";
+      }
+      }
+    })
+    .catch((error) => {
+      console.error("Error al enviar los datos a la ruta de carrito", error);
+    });
+
+};
+</script>
 {% endblock js %}

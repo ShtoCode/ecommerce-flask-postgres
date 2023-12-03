@@ -60,6 +60,10 @@ if (productos.length > 0) {
   const mensaje = document.createElement("p");
   mensaje.textContent = "No hay productos en el carrito.";
   document.getElementById("cart-items").appendChild(mensaje);
+  const btnCarrito = document.querySelector(".btn-paginapago");
+  btnCarrito.style.display = "none";
+  const totalElement = document.getElementById("total-price");
+  totalElement.style.display = "none";
 }
 
 const showProductsInCart = () => {
@@ -83,6 +87,7 @@ const showProductsInCart = () => {
     const group = groupedProducts[groupId];
     const product = group.product;
     const quantity = group.quantity;
+
 
     const item = document.createElement("li");
     item.className = "product-item";
@@ -114,7 +119,7 @@ const showProductsInCart = () => {
         <p class="precio">Precio: $${formatearNumero(product.precio)}</p>
         <label>Seleccionar Cantidad:</label>
         <select class="product-quantity" data-product-id="${productId}" onchange="actualizarPrecio(this)">
-          ${generateQuantityOptions(quantity)}
+          ${generateQuantityOptions(quantity, product.stock)}
         </select>
       `;
 
@@ -138,9 +143,10 @@ const showProductsInCart = () => {
   }
 };
 
-const generateQuantityOptions = (selectedQuantity) => {
+const generateQuantityOptions = (selectedQuantity, stock) => {
+
   let options = "";
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= stock; i++) {
     options += `<option value="${i}" ${i === selectedQuantity ? "selected" : ""
       }>${i}</option>`;
   }
@@ -181,21 +187,3 @@ function actualizarPrecio(select) {
   }
 }
 
-const enviarProductos = () => {
-  const data = { carrito: productos };
-  fetch("/carrito", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (response.ok) {
-        window.location.href = "/payment/checkout";
-      }
-    })
-    .catch((error) => {
-      console.error("Error al enviar los datos a la ruta de carrito", error);
-    });
-};

@@ -46,6 +46,7 @@ production_quantity_limits
             <div class="heading">{{ producto.nombre_producto.title() }}</div>
             <div class="description">{{ producto.descripcion }}</div>
             <div class="price">$ {{ producto.precio|format }}</div>
+            <div id="{{ producto.producto_id }}" class="stock" hidden> {{ producto.stock }} </div>
           </a>
             <div class="buttons">
 <button class="CartBtn">
@@ -54,8 +55,6 @@ production_quantity_limits
   </span>
   <p class="text">Añadir al carrito</p>
 </button>
-              <button class="buyBtn">Comprar</button>
-
             </div>
           </div>
         </div>
@@ -63,7 +62,10 @@ production_quantity_limits
 
     </div>
 {% block js %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <script src="{{ url_for('static', filename='js/addCart.js') }}"></script>
+
 {% endblock js %}
 
 
